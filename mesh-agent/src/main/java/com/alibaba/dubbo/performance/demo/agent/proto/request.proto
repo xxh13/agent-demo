@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "com.alibaba.dubbo.performance.demo.agent.proto";
+option java_outer_classname = "Request";
+
+
+message SearchRequest {
+  int64 requestId = 1;
+  string interfaceName = 2;
+  string method = 3;
+  string parameterTypesString = 4;
+  string parameter = 5;
+}
