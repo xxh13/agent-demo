@@ -5,7 +5,6 @@ import com.alibaba.dubbo.performance.demo.agent.netty.ProviderServer;
 import com.alibaba.dubbo.performance.demo.agent.registry.EtcdRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class AgentApp {
@@ -16,7 +15,7 @@ public class AgentApp {
 
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(AgentApp.class, args);
+        SpringApplication.run(AgentApp.class, args);
 
         String type = System.getProperty("type");   // 获取type参数
         if ("provider".equals(type)){
