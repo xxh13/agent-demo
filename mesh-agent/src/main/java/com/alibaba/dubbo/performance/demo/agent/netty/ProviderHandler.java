@@ -9,6 +9,11 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+
+/**
+ * 1。 负责接收consumer agent算的数据
+ * 2。 调用dubbo client向provider发送数据
+ */
 @ChannelHandler.Sharable
 public class ProviderHandler extends ChannelInboundHandlerAdapter {
 

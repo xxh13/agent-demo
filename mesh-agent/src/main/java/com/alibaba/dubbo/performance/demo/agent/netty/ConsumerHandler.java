@@ -7,6 +7,10 @@ import com.alibaba.dubbo.performance.demo.agent.service.ServicePool;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+
+/**
+ * 接收来自provider agent的消息
+ */
 public class ConsumerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
