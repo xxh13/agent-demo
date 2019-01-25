@@ -33,8 +33,6 @@ public class ProviderHandler extends ChannelInboundHandlerAdapter {
         });
     }
 
-
-
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
@@ -56,12 +54,12 @@ public class ProviderHandler extends ChannelInboundHandlerAdapter {
                 builder.setHash(-1);
                 ctx.writeAndFlush(builder);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             builder.setHash(-1);
             ctx.executor().submit(
-                    () -> {
-                        ctx.writeAndFlush(builder.build());
-                    }
+                () -> {
+                    ctx.writeAndFlush(builder.build());
+                }
             );
             e.printStackTrace();
         }

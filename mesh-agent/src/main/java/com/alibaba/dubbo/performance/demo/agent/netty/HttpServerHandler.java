@@ -57,9 +57,9 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
             }
         } else {
             ctx.executor().submit(
-                    () -> {
-                        ctx.write(new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
-                    }
+                () -> {
+                    ctx.write(new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
+                }
             );
         }
 

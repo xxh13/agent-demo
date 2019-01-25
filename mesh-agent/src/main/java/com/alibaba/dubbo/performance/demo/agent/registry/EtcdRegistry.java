@@ -16,12 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 
 public class EtcdRegistry implements IRegistry{
@@ -56,7 +53,7 @@ public class EtcdRegistry implements IRegistry{
             // 如果是provider，去etcd注册服务
             try {
                 int port = Integer.valueOf(System.getProperty("netty.port"));
-                register("com.alibaba.dubbo.performance.demo.provider.IHelloService",port);
+                register("com.alibaba.dubbo.performance.demo.provider.IHelloService", port);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -77,13 +74,13 @@ public class EtcdRegistry implements IRegistry{
     // 发送心跳到ETCD,表明该host是活着的
     public void keepAlive(){
         Executors.newSingleThreadExecutor().submit(
-                () -> {
-                    try {
-                        Lease.KeepAliveListener listener = lease.keepAlive(leaseId);
-                        listener.listen();
-                        logger.info("KeepAlive lease:" + leaseId + "; Hex format:" + Long.toHexString(leaseId));
-                    } catch (Exception e) { e.printStackTrace(); }
-                }
+            () -> {
+                try {
+                    Lease.KeepAliveListener listener = lease.keepAlive(leaseId);
+                    listener.listen();
+                    logger.info("KeepAlive lease:" + leaseId + "; Hex format:" + Long.toHexString(leaseId));
+                } catch (Exception e) { e.printStackTrace(); }
+            }
         );
     }
 

@@ -59,9 +59,9 @@ public class RpcClient {
         RpcRequestHolder.put(String.valueOf(request.getId()),future);
 
         channel.eventLoop().submit(
-                () -> {
-                    channel.writeAndFlush(request);
-                }
+            () -> {
+                channel.writeAndFlush(request);
+            }
         );
 
         RpcRequestHolder.put(String.valueOf(request.getId()), future);

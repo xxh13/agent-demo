@@ -1,8 +1,7 @@
-package com.alibaba.dubbo.performance.demo.agent.agent;
+package com.alibaba.dubbo.performance.demo.agent;
 
 import com.alibaba.dubbo.performance.demo.agent.netty.ConsumerHttpServer;
 import com.alibaba.dubbo.performance.demo.agent.netty.ProviderServer;
-import com.alibaba.dubbo.performance.demo.agent.registry.EtcdRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,7 +19,6 @@ public class AgentApp {
 
         String type = System.getProperty("type");   // 获取type参数
         if ("provider".equals(type)){
-            EtcdRegistry etcdRegistry = new EtcdRegistry(System.getProperty("etcd.url"));
             ProviderServer server = new ProviderServer();
             server.start(Integer.valueOf(System.getProperty("netty.port")));
         }
