@@ -13,6 +13,6 @@ test-result
 **.log
 /log/
 .idea/
-**target/%
+**/target/%
 
 mesh-agent/target/%%%
