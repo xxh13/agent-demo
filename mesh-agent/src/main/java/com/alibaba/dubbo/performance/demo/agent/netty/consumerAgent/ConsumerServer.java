@@ -1,5 +1,6 @@
-package com.alibaba.dubbo.performance.demo.agent.netty;
+package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent;
 
+import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.ConsumerClientInitializer;
 import com.alibaba.dubbo.performance.demo.agent.registry.Endpoint;
 import com.alibaba.dubbo.performance.demo.agent.registry.EtcdRegistry;
 import io.netty.bootstrap.Bootstrap;

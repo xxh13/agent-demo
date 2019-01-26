@@ -1,6 +1,6 @@
-package com.alibaba.dubbo.performance.demo.agent.netty;
+package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent;
 
-import com.alibaba.dubbo.performance.demo.agent.proto.Request;
+import com.alibaba.dubbo.performance.demo.agent.proto.Response;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -9,7 +9,7 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
-public class ProviderInitializer extends ChannelInitializer<SocketChannel> {
+public class ConsumerClientInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
@@ -17,7 +17,7 @@ public class ProviderInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
         pipeline.addLast(new ProtobufEncoder());
         pipeline.addLast(new ProtobufVarint32FrameDecoder());
-        pipeline.addLast(new ProtobufDecoder(Request.SearchRequest.getDefaultInstance()));
-        pipeline.addLast(new ProviderHandler());
+        pipeline.addLast(new ProtobufDecoder(Response.SearchResponse.getDefaultInstance()));
+        pipeline.addLast(new ConsumerHandler());
     }
 }

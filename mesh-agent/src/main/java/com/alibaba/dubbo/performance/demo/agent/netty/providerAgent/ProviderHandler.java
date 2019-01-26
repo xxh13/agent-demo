@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.netty;
+package com.alibaba.dubbo.performance.demo.agent.netty.providerAgent;
 
 import com.alibaba.dubbo.performance.demo.agent.client.RpcClient;
 import com.alibaba.dubbo.performance.demo.agent.proto.Request;

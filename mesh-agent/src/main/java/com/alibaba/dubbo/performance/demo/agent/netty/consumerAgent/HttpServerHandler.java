@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.netty;
+package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent;
 
 import com.alibaba.dubbo.performance.demo.agent.client.ConsumerClient;
 import com.alibaba.dubbo.performance.demo.agent.proto.Response;

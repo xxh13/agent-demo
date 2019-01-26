@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.netty;
+package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent;
 
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.ConsumerRequestHolder;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.ResponseFuture;
@@ -20,13 +20,12 @@ public class ConsumerHandler extends ChannelInboundHandlerAdapter {
             () -> {
                 long requestId = response.getResponseId();
                 ResponseFuture future = ConsumerRequestHolder.get(requestId);
-                if(null != future){
+                if(null != future) {
                     ConsumerRequestHolder.remove(requestId);
                     future.done(response);
                 }
             }
         );
-
     }
 
     @Override

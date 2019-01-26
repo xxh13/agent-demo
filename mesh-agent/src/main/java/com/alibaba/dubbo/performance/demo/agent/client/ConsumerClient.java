@@ -2,8 +2,7 @@ package com.alibaba.dubbo.performance.demo.agent.client;
 
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.ConsumerRequestHolder;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.ResponseFuture;
-import com.alibaba.dubbo.performance.demo.agent.loop.ConsumerClientLoop;
-import com.alibaba.dubbo.performance.demo.agent.netty.ConsumerServer;
+import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.ConsumerServer;
 import com.alibaba.dubbo.performance.demo.agent.service.ServicePool;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -21,8 +20,6 @@ public class ConsumerClient {
 
     private static ConsumerServer consumerServer = new ConsumerServer();
 
-    private ConsumerClientLoop consumerClientLoop = ConsumerClientLoop.getConsumerClientLoop();
-
     public void invoke(FullHttpRequest fullHttpRequest, Consumer<Object> consumer) throws Exception
     {
         HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(new DefaultHttpDataFactory(false), fullHttpRequest);
@@ -30,25 +27,7 @@ public class ConsumerClient {
         ServicePool.singleThreadPool.submit(
             () -> {
                 try {
-//                    InterfaceHttpData interfaceData = decoder.getBodyHttpData("interface");
-//                    InterfaceHttpData methodData = decoder.getBodyHttpData("method");
-//                    InterfaceHttpData parameterTypesStringData = decoder.getBodyHttpData("parameterTypesString");
                     InterfaceHttpData parameterData = decoder.getBodyHttpData("parameter");
-//                    String interfaceName = "";
-//                    if (interfaceData.getHttpDataType() == InterfaceHttpData.HttpDataType.Attribute) {
-//                        Attribute attribute = (Attribute) interfaceData;
-//                        interfaceName = attribute.getValue();
-//                    }
-//                    String method = "";
-//                    if (methodData.getHttpDataType() == InterfaceHttpData.HttpDataType.Attribute) {
-//                        Attribute attribute = (Attribute) methodData;
-//                        method = attribute.getValue();
-//                    }
-//                    String parameterTypesString = "";
-//                    if (parameterTypesStringData.getHttpDataType() == InterfaceHttpData.HttpDataType.Attribute) {
-//                        Attribute attribute = (Attribute) parameterTypesStringData;
-//                        parameterTypesString = attribute.getValue();
-//                    }
                     String parameterString = "";
                     if (parameterData.getHttpDataType() == InterfaceHttpData.HttpDataType.Attribute) {
                         Attribute attribute = (Attribute) parameterData;
@@ -64,17 +43,16 @@ public class ConsumerClient {
                     builder.setParameter(parameterString);
 
                     ResponseFuture future = new ResponseFuture();
-                    ConsumerRequestHolder.put(builder.getRequestId(), future);
+                    future.setCallback(consumer);
+                    ConsumerRequestHolder.put(requestId.get(), future);
 
                     Channel channel = consumerServer.getChannel();
-
                     channel.eventLoop().submit(
                         () -> {
                             channel.writeAndFlush(builder.build());
                         }
                     );
 
-                    consumerClientLoop.submit(future, consumer);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
