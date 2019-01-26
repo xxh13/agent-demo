@@ -1,8 +1,8 @@
-package com.alibaba.dubbo.performance.demo.agent.client;
+package com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.client;
 
-import com.alibaba.dubbo.performance.demo.agent.dubbo.ConnectManager;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.*;
 import com.alibaba.dubbo.performance.demo.agent.loop.RpcFutureLoop;
+import com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.sender.ConnectManager;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +17,12 @@ import java.util.function.Consumer;
  * 负责和provider通信的client
  *
  */
-public class RpcClient {
-    private Logger logger = LoggerFactory.getLogger(RpcClient.class);
+public class ProviderClient {
+    private Logger logger = LoggerFactory.getLogger(ProviderClient.class);
 
     private ConnectManager connectManager;
 
-    public RpcClient() {
+    public ProviderClient() {
         this.connectManager = ConnectManager.getConnectManager();
     }
 

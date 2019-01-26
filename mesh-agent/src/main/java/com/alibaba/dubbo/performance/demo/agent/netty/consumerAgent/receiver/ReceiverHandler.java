@@ -1,6 +1,6 @@
 package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.receiver;
 
-import com.alibaba.dubbo.performance.demo.agent.client.ConsumerClient;
+import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.client.ConsumerClient;
 import com.alibaba.dubbo.performance.demo.agent.proto.Response;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;

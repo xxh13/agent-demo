@@ -1,6 +1,6 @@
-package com.alibaba.dubbo.performance.demo.agent.netty.providerAgent;
+package com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.receiver;
 
-import com.alibaba.dubbo.performance.demo.agent.client.RpcClient;
+import com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.client.ProviderClient;
 import com.alibaba.dubbo.performance.demo.agent.proto.Request;
 import com.alibaba.dubbo.performance.demo.agent.proto.Response;
 import com.alibaba.dubbo.performance.demo.agent.service.ServicePool;
@@ -17,7 +17,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 @ChannelHandler.Sharable
 public class ProviderHandler extends ChannelInboundHandlerAdapter {
 
-    private RpcClient client = new RpcClient();
+    private ProviderClient client = new ProviderClient();
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

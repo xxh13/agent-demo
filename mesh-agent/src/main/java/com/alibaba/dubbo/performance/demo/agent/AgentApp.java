@@ -1,7 +1,7 @@
 package com.alibaba.dubbo.performance.demo.agent;
 
 import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.receiver.ReceiverServer;
-import com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.ProviderServer;
+import com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.receiver.ProviderServer;
 import com.alibaba.dubbo.performance.demo.agent.registry.EtcdRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

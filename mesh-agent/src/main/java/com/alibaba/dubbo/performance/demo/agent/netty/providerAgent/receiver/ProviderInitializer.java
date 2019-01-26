@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.netty.providerAgent;
+package com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.receiver;
 
 import com.alibaba.dubbo.performance.demo.agent.proto.Request;
 import io.netty.channel.ChannelInitializer;

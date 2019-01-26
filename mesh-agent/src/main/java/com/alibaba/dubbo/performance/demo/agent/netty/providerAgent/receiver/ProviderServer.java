@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.netty.providerAgent;
+package com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.receiver;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.UnpooledByteBufAllocator;
