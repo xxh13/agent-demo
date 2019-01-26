@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent;
+package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.sender;
 
 import com.alibaba.dubbo.performance.demo.agent.proto.Response;
 import io.netty.channel.ChannelInitializer;
@@ -9,7 +9,7 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
-public class ConsumerClientInitializer extends ChannelInitializer<SocketChannel> {
+public class SenderInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
@@ -18,6 +18,6 @@ public class ConsumerClientInitializer extends ChannelInitializer<SocketChannel>
         pipeline.addLast(new ProtobufEncoder());
         pipeline.addLast(new ProtobufVarint32FrameDecoder());
         pipeline.addLast(new ProtobufDecoder(Response.SearchResponse.getDefaultInstance()));
-        pipeline.addLast(new ConsumerHandler());
+        pipeline.addLast(new SenderHandler());
     }
 }

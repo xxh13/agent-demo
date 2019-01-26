@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent;
+package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.sender;
 
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.ConsumerRequestHolder;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.ResponseFuture;
@@ -11,7 +11,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 /**
  * 接收来自provider agent的消息
  */
-public class ConsumerHandler extends ChannelInboundHandlerAdapter {
+public class SenderHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent;
+package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.receiver;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.UnpooledByteBufAllocator;
@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * netty http server
  */
-public class ConsumerHttpServer {
+public class ReceiverServer {
     public void run(int port) {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -20,7 +20,7 @@ public class ConsumerHttpServer {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new ConsumerHttpServerInitializer())
+                    .childHandler(new ReceiverInitializer())
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT);
             ChannelFuture channelFuture = serverBootstrap.bind("127.0.0.1", port);

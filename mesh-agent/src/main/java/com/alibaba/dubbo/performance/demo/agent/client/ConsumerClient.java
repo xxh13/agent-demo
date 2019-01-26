@@ -2,7 +2,7 @@ package com.alibaba.dubbo.performance.demo.agent.client;
 
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.ConsumerRequestHolder;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.ResponseFuture;
-import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.ConsumerServer;
+import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.sender.SenderServer;
 import com.alibaba.dubbo.performance.demo.agent.service.ServicePool;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 public class ConsumerClient {
     private static AtomicLong requestId = new AtomicLong(0);
 
-    private static ConsumerServer consumerServer = new ConsumerServer();
+    private static SenderServer senderServer = new SenderServer();
 
     public void invoke(FullHttpRequest fullHttpRequest, Consumer<Object> consumer) throws Exception
     {
@@ -46,7 +46,7 @@ public class ConsumerClient {
                     future.setCallback(consumer);
                     ConsumerRequestHolder.put(requestId.get(), future);
 
-                    Channel channel = consumerServer.getChannel();
+                    Channel channel = senderServer.getChannel();
                     channel.eventLoop().submit(
                         () -> {
                             channel.writeAndFlush(builder.build());

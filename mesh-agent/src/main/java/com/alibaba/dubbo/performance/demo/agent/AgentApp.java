@@ -1,6 +1,6 @@
 package com.alibaba.dubbo.performance.demo.agent;
 
-import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.ConsumerHttpServer;
+import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.receiver.ReceiverServer;
 import com.alibaba.dubbo.performance.demo.agent.netty.providerAgent.ProviderServer;
 import com.alibaba.dubbo.performance.demo.agent.registry.EtcdRegistry;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +24,7 @@ public class AgentApp {
             server.start(Integer.valueOf(System.getProperty("netty.port")));
         }
         else if ("consumer".equals(type)) {
-            ConsumerHttpServer server = new ConsumerHttpServer();
+            ReceiverServer server = new ReceiverServer();
             server.run(20000);
         } else {
             System.out.println("wrong type");

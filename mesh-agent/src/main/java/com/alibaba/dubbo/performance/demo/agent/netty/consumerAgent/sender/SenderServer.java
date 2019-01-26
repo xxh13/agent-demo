@@ -1,6 +1,5 @@
-package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent;
+package com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.sender;
 
-import com.alibaba.dubbo.performance.demo.agent.netty.consumerAgent.ConsumerClientInitializer;
 import com.alibaba.dubbo.performance.demo.agent.registry.Endpoint;
 import com.alibaba.dubbo.performance.demo.agent.registry.EtcdRegistry;
 import io.netty.bootstrap.Bootstrap;
@@ -14,7 +13,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class ConsumerServer {
+public class SenderServer {
 
     private volatile Bootstrap bootstrap;
 
@@ -22,7 +21,7 @@ public class ConsumerServer {
     private AtomicInteger atomicLong = new AtomicInteger(0);
 
 
-    public ConsumerServer() {
+    public SenderServer() {
         initBootstrap();
         try {
             int channelSize = 0, chanelIndex = 0;
@@ -58,6 +57,6 @@ public class ConsumerServer {
                 .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
                 .channel(NioSocketChannel.class)
-                .handler(new ConsumerClientInitializer());
+                .handler(new SenderInitializer());
     }
 }
